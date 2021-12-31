@@ -23,7 +23,7 @@ pipeline {
 	stage('Building image') {
             steps {
                 script {
-                   dockerImage = docker.build("asia.gcr.io/searce-playground/pranavweb/springapp:${env.BUILD_ID}")
+                   dockerImage = docker.build("asia.gcr.io/my-project/pranavweb/springapp:${env.BUILD_ID}")
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
 	stage('Pushing image') {
             steps {
 	        script {
-                    withDockerRegistry(credentialsId: 'gcr:searce-playground', url: 'https://asia.gcr.io') {
+                    withDockerRegistry(credentialsId: 'gcr:my-project', url: 'https://asia.gcr.io') {
     	                dockerImage.push("${env.BUILD_ID}")
 		    }	
                 } 
