@@ -31,7 +31,7 @@ pipeline {
 	stage('Pushing image') {
             steps {
 	        script {
-                    withDockerRegistry(credentialsId: 'gcr:searce-playground', url: 'asia.gcr.io') {
+                    withDockerRegistry(credentialsId: 'gcr:searce-playground', url: 'https://asia.gcr.io') {
     	                dockerImage.push("${env.BUILD_ID}")
 		    }	
                 } 
