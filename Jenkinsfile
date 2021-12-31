@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PROJECT_ID = 'searce-playground'
-        CLUSTER_NAME = ' pranav-cluster'
+        CLUSTER_NAME = 'pranav-cluster'
         ZONE = 'asia-south1-a'
         CREDENTIALS_ID = 'searce-playground'
     }
