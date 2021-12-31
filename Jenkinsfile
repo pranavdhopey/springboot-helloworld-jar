@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'searce-playground'
-        CLUSTER_NAME = 'pranav-cluster'
-        ZONE = 'asia-south1-a'
-        CREDENTIALS_ID = 'searce-playground'
+        PROJECT_ID = 'my-project'
+        CLUSTER_NAME = 'my-cluster'
+        ZONE = 'my-region'
+        CREDENTIALS_ID = 'gke'
     }
 
     tools {
@@ -37,7 +37,7 @@ pipeline {
 	stage('Pushing image') {
             steps {
 	        script {
-                    withDockerRegistry(credentialsId: 'gcr:searce-playground', url: 'https://asia.gcr.io') {
+                    withDockerRegistry(credentialsId: 'gcr:<credential-id>', url: 'https://asia.gcr.io') {
     	                dockerImage.push("${env.BUILD_ID}")
 		    }	
                 } 
