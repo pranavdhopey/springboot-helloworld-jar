@@ -15,16 +15,16 @@ pipeline {
 		
         stage('Build') {
             steps {		
-			    // Run Maven on a agent.
+	        // Run Maven on a agent.
                 sh "mvn clean install"
             }
         }
 		
-		stage('Building image') {
+	stage('Building image') {
             steps{
-              script {
-                dockerImage = docker.build "${asia.gcr.io/searce-playground/pranavweb/springapp}:${IMAGE_TAG}"
-              }
+                script {
+                   dockerImage = docker.build "${asia.gcr.io/searce-playground/pranavweb/springapp}:${IMAGE_TAG}"
+                }
             }
         }
     }
