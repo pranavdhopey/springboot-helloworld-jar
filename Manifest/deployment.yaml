@@ -1,0 +1,31 @@
+---
+## Deployment ###
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springapp
+  labels:
+    app: springapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springapp
+  template:
+    metadata:
+      labels:
+        app: springapp
+    spec:
+      containers:
+      - name: springapp
+        image: asia.gcr.io/my-project/pranavweb/springapp:latest
+        ports:
+        - containerPort: 8080
+#        resources:
+#          requests:
+#            memory: 5Mi  #1KiB = 1024bytes  
+#            cpu: 5m      #1cpu = 1000m cpu
+#          limits:
+#            memory: 10Mi
+#            cpu: 7m
