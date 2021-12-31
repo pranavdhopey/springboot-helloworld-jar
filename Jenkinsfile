@@ -46,7 +46,7 @@ pipeline {
 
 	stage('Deploy to GKE') {
             steps {
-                step([$class: 'KubernetesEngineBuilder', projectId: "env.PROJECT_ID", clusterName: env.CLUSTER_NAME, zone: env.ZONE, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, zone: env.ZONE, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }     
         }
     }
