@@ -23,7 +23,7 @@ pipeline {
 	stage('Building image') {
             steps{
                 script {
-                   dockerImage = docker.build "${asia.gcr.io/searce-playground/pranavweb/springapp}:${IMAGE_TAG}"
+                   dockerImage = docker.build "${asia.gcr.io/searce-playground/pranavweb/springapp}:${env.BUILD_ID}"
                 }
             }
         }
