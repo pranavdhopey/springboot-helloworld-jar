@@ -8,7 +8,7 @@ public class HelloWorldController {
 
 	@GetMapping("/")
 	public String sayHello() {
-		return "Hello from Goinit";
+		return "Hello from Jenkins";
 	}
 	
 }
