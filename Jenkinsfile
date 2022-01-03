@@ -50,5 +50,11 @@ pipeline {
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, zone: env.LOCATION, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }     
         }
+
+	post {
+           always {
+              cleanWs()
+           }
+        }
     }
 }
