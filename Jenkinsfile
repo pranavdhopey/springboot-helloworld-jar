@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'my-project'
-        CLUSTER_NAME = 'my-cluster'
-        ZONE = 'my-region'
-        CREDENTIALS_ID = 'gke'
+        PROJECT_ID = 'searce-playground'
+        CLUSTER_NAME = 'pranav-cluster'
+        LOCATION = 'asia-south1-a'
+        CREDENTIALS_ID = 'searce-playground'
     }
 
     tools {
@@ -37,7 +37,7 @@ pipeline {
 	stage('Pushing image') {
             steps {
 	        script {
-                    withDockerRegistry(credentialsId: 'gcr:<credential-id>', url: 'https://asia.gcr.io') {
+                    withDockerRegistry(credentialsId: 'gcr:searce-playground', url: 'https://asia.gcr.io') {
     	                dockerImage.push("${env.BUILD_ID}")
 		    }	
                 } 
@@ -47,7 +47,7 @@ pipeline {
 	stage('Deploy to GKE') {
             steps {
 	        sh "sed -i 's/latest/${env.BUILD_ID}/g' Manifest/deployment.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, zone: env.ZONE, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, zone: env.LOCATION, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }     
         }
     }
