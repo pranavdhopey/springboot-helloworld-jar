@@ -15,6 +15,7 @@ pipeline {
         stage('Clone') {
             steps {
                 // Get the code from a GitHub repository
+		// cleanWs()
                 git 'https://github.com/pranavdhopey/springboot-helloworld-jar.git'
             }
         }
