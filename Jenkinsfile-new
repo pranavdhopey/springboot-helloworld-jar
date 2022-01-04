@@ -6,7 +6,7 @@ pipeline {
         stage('Clone') {
             steps {
                 // Get the code from a GitHub repository
-		        // cleanWs()
+		cleanWs()
                 git 'https://github.com/pranavdhopey/springboot-helloworld-jar.git'
                 script {
                     BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
