@@ -8,7 +8,7 @@ pipeline {
                 // Get the code from a GitHub repository
 		cleanWs()
 
-                git 'https://github.com/pranavdhopey/springboot-helloworld-jar.git'
+                git branch:'dev-01', url: 'https://github.com/pranavdhopey/springboot-helloworld-jar.git'
                 script {
                     BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     echo "${BRANCH}"
