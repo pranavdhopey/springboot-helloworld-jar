@@ -2,10 +2,11 @@ def BRANCH
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'searce-playground'
-        CLUSTER_NAME = 'pranav-cluster'
-        LOCATION = 'asia-south1-a'
-        CREDENTIALS_ID = 'searce-playground'
+        PROJECT_ID = '<project-id>'
+        CLUSTER_NAME = '<cluster-name>'
+        LOCATION = '<zone>'
+        CREDENTIALS_ID = '<credential-id>'
+	NAMESPACE = 'default'
     }
 
     tools {
@@ -54,8 +55,8 @@ pipeline {
             steps {
 	        sh "sed -i 's/latest/${env.BUILD_ID}/g' Manifest/deployment.yaml"
 
-		sh "sed -i '/namespace:/ s/default/${BRANCH}/g' Manifest/deployment.yaml"
-		sh "sed -i '/namespace:/ s/default/${BRANCH}/g' Manifest/service.yaml"
+		// sh "sed -i '/namespace:/ s/default/${NAMESPACE}/g' Manifest/deployment.yaml"
+		// sh "sed -i '/namespace:/ s/default/${NAMESPACE}/g' Manifest/service.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, zone: env.LOCATION, manifestPattern: 'Manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }     
         }
