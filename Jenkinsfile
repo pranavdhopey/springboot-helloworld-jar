@@ -36,7 +36,7 @@ pipeline {
 	stage('Building image') {
             steps {
                 script {
-                   dockerImage = docker.build("asia.gcr.io/${env.PROJECT_ID}/pranavweb/springapp:${env.BUILD_ID}")
+                   dockerImage = docker.build("asia.gcr.io/${env.PROJECT_ID}/springboot/springapp:${env.BUILD_ID}")
                 }
             }
         }
